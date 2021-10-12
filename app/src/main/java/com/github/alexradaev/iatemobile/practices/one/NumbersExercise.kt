@@ -5,8 +5,8 @@ import kotlin.random.Random
 /**
  * In list of N elements, select all elements are twice the Z. Create a list from the indexes of these elements and print them.
  */
-class NumbersExercise {
-    var number: Int =0
+class NumbersExercise: Exercise() {
+
     var numbers: List<Int> = listOf()
 
     init {
@@ -23,4 +23,12 @@ class NumbersExercise {
             .filter{ (index, value) -> value == 2*number }
             .map{ (index, value) -> index }
     }
+
+    override var inputData: String
+        get() = numbers.joinToString()
+        set(value) {}
+
+    override var result: Map<String, String>
+        get() = mapOf("indexes" to listOfIndexes().joinToString())
+        set(value) {}
 }
