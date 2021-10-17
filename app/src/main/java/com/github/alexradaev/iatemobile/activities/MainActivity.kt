@@ -1,5 +1,6 @@
-package com.github.alexradaev.iatemobile
+package com.github.alexradaev.iatemobile.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -9,6 +10,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.github.alexradaev.iatemobile.Helper
+import com.github.alexradaev.iatemobile.R
 import com.github.alexradaev.iatemobile.practices.one.Exercise
 import com.github.alexradaev.iatemobile.practices.one.NumbersExercise
 import com.github.alexradaev.iatemobile.practices.one.StringsExercise
@@ -63,6 +66,10 @@ class MainActivity : AppCompatActivity() {
                 stringsExercise()
                 true
             }
+            R.id.action_second_activity -> {
+                startSecondActivity()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -91,5 +98,13 @@ class MainActivity : AppCompatActivity() {
         inputEditor.visibility = View.VISIBLE
         inputEditor.inputType = InputType.TYPE_CLASS_NUMBER
         updateButton.visibility = View.VISIBLE
+    }
+
+    fun startSecondActivity(){
+        val textView = findViewById(R.id.textView) as TextView
+        val text = textView.text.toString()
+        val sIntent = Intent(this, SecondActivity::class.java)
+        sIntent.putExtra(Helper.RND_STRING, text)
+        startActivity(sIntent)
     }
 }
